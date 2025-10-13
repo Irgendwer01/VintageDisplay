@@ -13,7 +13,6 @@ import com.caedis.duradisplay.utils.DurabilityLikeInfo;
 
 import ic2.api.item.ICustomDamageItem;
 import ic2.core.item.armor.ItemArmorFluidTank;
-import mekanism.api.gas.IGasItem;
 
 public class OverlayDurability extends OverlayDurabilityLike {
 
@@ -58,8 +57,6 @@ public class OverlayDurability extends OverlayDurabilityLike {
         addHandler("buildcraft.core.ItemPaintbrush", i -> null);
         addHandler("ic2.core.item.tool.ItemToolPainter", i -> null);
         addHandler("thaumcraft.common.items.tools.ItemScribingTools", i -> null);
-        addHandler("mekanism.common.item.ItemJetpack", OverlayDurability::handleIGasItem);
-        addHandler("mekanism.common.item.ItemFlamethrower", OverlayDurability::handleIGasItem);
         addHandler("net.minecraft.item.Item", OverlayDurability::handleDefault); // Needs to be last because else all
                                                                                  // other Handler won't apply
     }
@@ -110,15 +107,6 @@ public class OverlayDurability extends OverlayDurabilityLike {
 
         double damage = bei.getCustomDamage(stack);
         double max = bei.getMaxCustomDamage(stack);
-        double current = max - damage;
-        return new DurabilityLikeInfo(current, max);
-    }
-
-    public static DurabilityLikeInfo handleIGasItem(@NotNull ItemStack stack) {
-        IGasItem iGasItem = ((IGasItem) stack.getItem());
-        assert iGasItem != null;
-        double max = iGasItem.getMaxGas(stack);
-        double damage = iGasItem.getGas(stack) == null ? 0 : max - iGasItem.getGas(stack).amount;
         double current = max - damage;
         return new DurabilityLikeInfo(current, max);
     }

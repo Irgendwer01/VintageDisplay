@@ -6,6 +6,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.caedis.duradisplay.DuraDisplay;
 import com.caedis.duradisplay.config.ConfigDurabilityLike;
 import com.caedis.duradisplay.utils.ColorType;
 import com.caedis.duradisplay.utils.DurabilityFormatter;
@@ -16,6 +17,8 @@ import appeng.api.implementations.items.IAEItemPowerStorage;
 import gregtech.api.capability.GregtechCapabilities;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
+import xyz.phanta.tconevo.capability.EuStore;
+import xyz.phanta.tconevo.init.TconEvoCaps;
 
 public class OverlayCharge extends OverlayDurabilityLike {
 
@@ -58,7 +61,9 @@ public class OverlayCharge extends OverlayDurabilityLike {
         addHandler("gregtech.api.items.toolitem.IGTTool", OverlayCharge::handleIElectricItemGT);
         addHandler("gregtech.api.items.armor.IArmorItem", OverlayCharge::handleIElectricItemGT);
         addHandler("appeng.api.implementations.items.IAEItemPowerStorage", OverlayCharge::handleIAEItemPowerStorage);
-        addHandler("net.minecraft.item.Item", OverlayCharge::handleEnergyStorage);
+        addHandler("slimeknights.tconstruct.library.tools.TinkerToolCore", OverlayCharge::handleTinkersEvo);
+        addHandler("net.minecraft.item.Item", OverlayCharge::handleEnergyStorage); // Needs to be last because else all
+        // other Handler won't apply
     }
 
     @Override
@@ -94,6 +99,20 @@ public class OverlayCharge extends OverlayDurabilityLike {
         IAEItemPowerStorage tool = ((IAEItemPowerStorage) stack.getItem());
         assert tool != null;
         return new DurabilityLikeInfo(tool.getAECurrentPower(stack), tool.getAEMaxPower(stack));
+    }
+
+    public static DurabilityLikeInfo handleTinkersEvo(@NotNull ItemStack stack) {
+        if (stack.hasCapability(CapabilityEnergy.ENERGY, null)) {
+            return handleEnergyStorage(stack);
+        }
+        if (DuraDisplay.ic2Loaded) {
+            if (stack.hasCapability(TconEvoCaps.EU_STORE, null)) {
+                EuStore euStore = stack.getCapability(TconEvoCaps.EU_STORE, null);
+                assert euStore != null;
+                return new DurabilityLikeInfo(euStore.getEuStored(), euStore.getEuStoredMax());
+            }
+        }
+        return null;
     }
 
     public static DurabilityLikeInfo handleIEnergyItem(@NotNull ItemStack stack) {

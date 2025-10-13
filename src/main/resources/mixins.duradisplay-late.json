@@ -8,7 +8,9 @@
   "client": [
     "enderio.PowerBarOverlayRenderHelperMixin",
     "gregtech.ToolChargeBarRendererMixin",
-    "enderutilities.MixinGuiContainerLargeStacks"
+    "enderutilities.MixinGuiContainerLargeStacks",
+    "tinkersevo.MixinItemStackBarCoreHooks",
+    "sussypatches.MixinFluidBarRenderer"
   ],
   "mixins": []
 }

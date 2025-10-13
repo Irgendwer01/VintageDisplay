@@ -23,19 +23,25 @@
  */
 dependencies {
     annotationProcessor(project(":processor"))
-    implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:5050979")
+    implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:5519022")
     implementation rfg.deobf("curse.maven:botania-225643:3330934")
     compileOnlyApi rfg.deobf("curse.maven:EIO-64578:4674244") //TODO: Change to implementation when fixed in RFG
     compileOnlyApi rfg.deobf("curse.maven:EnderCore-231868:4671384")
     implementation rfg.deobf("curse.maven:CCL-242818:2779848")
     implementation rfg.deobf("curse.maven:baubles-227083:2518667")
-    implementation rfg.deobf("curse.maven:iu-372007:6596915")
+    compileOnlyApi rfg.deobf("curse.maven:iu-372007:6596915") // Lags too much in runClient
     implementation rfg.deobf("curse.maven:ic2-242638:2746892")
-    implementation rfg.deobf("curse.maven:grs-687577:4991701")
+    implementation rfg.deobf("curse.maven:grs-687577:7092147")
     implementation rfg.deobf("curse.maven:AE2UEL-570458:5047265")
     implementation rfg.deobf("curse.maven:Forestry-59751:2684780")
     implementation rfg.deobf("curse.maven:Thaumcraft-223628:2629023")
     implementation rfg.deobf("curse.maven:mekanism-268560:2835175")
     implementation rfg.deobf("curse.maven:ender_utilities-224320:2977010")
+    implementation rfg.deobf("curse.maven:tinkers_evolution-384589:6802732")
+    implementation rfg.deobf("curse.maven:libnine-322344:6790812")
+    implementation rfg.deobf("curse.maven:tinkers_construct-74072:2902483")
+    implementation rfg.deobf("curse.maven:mantle-74924:2713386")
+    implementation rfg.deobf("curse.maven:sussypatches-1319894:7101652")
+
 //    implementation rfg.deobf(files('libs/optifine.jar'))
 }

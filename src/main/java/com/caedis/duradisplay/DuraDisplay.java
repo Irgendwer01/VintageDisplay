@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -26,6 +27,8 @@ import zone.rong.mixinbooter.ILateMixinLoader;
 public class DuraDisplay implements ILateMixinLoader {
 
     public static final Logger LOG = LogManager.getLogger(Tags.MODID);
+    public static boolean ic2Loaded = false;
+    public static boolean mekanismLoaded = false;
 
     @SuppressWarnings("unused")
     @Mod.EventHandler
@@ -38,14 +41,8 @@ public class DuraDisplay implements ILateMixinLoader {
                     .bus()
                     .register(this);
         }
-        /*
-         * try {
-         * AppEngItemRenderHook.init();
-         * } catch (NoClassDefFoundError e) {
-         * DuraDisplay.LOG.info("AE2 not found, skipping AppEngItemRenderHook");
-         * }
-         * 
-         */
+        ic2Loaded = Loader.isModLoaded("ic2");
+        mekanismLoaded = Loader.isModLoaded("mekanism");
     }
 
     @SuppressWarnings("unused")

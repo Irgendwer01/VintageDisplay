@@ -56,7 +56,8 @@ public class OverlayGadgets extends OverlayDurabilityLike {
         addHandler("thaumcraft.common.items.tools.ItemScribingTools", OverlayDurability::handleDefault);
         addHandler("vazkii.botania.common.item.interaction.thaumcraft.ItemManaInkwell",
                 OverlayDurability::handleDefault);
-        addHandler("net.minecraft.item.Item", OverlayGadgets::handleByAllowList);
+        addHandler("net.minecraft.item.Item", OverlayGadgets::handleByAllowList); // Needs to be last because else all
+        // other Handler won't apply
     }
 
     public static final Set<String> AllowListUnLocalized = Sets.newHashSet(
