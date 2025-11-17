@@ -67,7 +67,7 @@ public class TextRenderer extends OverlayRenderer {
         GlStateManager.disableDepth();
         GlStateManager.disableBlend();
         GL11.glTranslatef(0, 0, 50);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);
         int stringWidth = fontRenderer.getStringWidth(value);
         int x = getX(xPosition, stringWidth);
         int y = getY(yPosition);
