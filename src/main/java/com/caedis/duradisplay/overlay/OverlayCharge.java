@@ -1,6 +1,5 @@
 package com.caedis.duradisplay.overlay;
 
-import com.hbm.api.energymk2.IBatteryItem;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
@@ -13,6 +12,7 @@ import com.caedis.duradisplay.utils.ColorType;
 import com.caedis.duradisplay.utils.DurabilityFormatter;
 import com.caedis.duradisplay.utils.DurabilityLikeInfo;
 import com.denfop.api.item.IEnergyItem;
+import com.hbm.api.energymk2.IBatteryItem;
 
 import appeng.api.implementations.items.IAEItemPowerStorage;
 import gregtech.api.capability.GregtechCapabilities;
