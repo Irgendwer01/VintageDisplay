@@ -1,5 +1,6 @@
 package com.caedis.duradisplay.overlay;
 
+import com.hbm.api.energymk2.IBatteryItem;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
@@ -55,6 +56,7 @@ public class OverlayCharge extends OverlayDurabilityLike {
                         return "charge";
                     }
                 });
+        addHandler("com.hbm.api.energymk2.IBatteryItem", OverlayCharge::handleIBatteryItem);
         addHandler("com.denfop.api.item.IEnergyItem", OverlayCharge::handleIEnergyItem);
         addHandler("ic2.api.item.IElectricItem", OverlayCharge::handleIElectricItem);
         addHandler("gregtech.api.items.metaitem.MetaItem", OverlayCharge::handleIElectricItemGT);
@@ -120,5 +122,11 @@ public class OverlayCharge extends OverlayDurabilityLike {
         assert electricItem != null;
         return new DurabilityLikeInfo(com.denfop.ElectricItem.manager.getCharge(stack),
                 electricItem.getMaxEnergy(stack));
+    }
+
+    public static DurabilityLikeInfo handleIBatteryItem(@NotNull ItemStack stack) {
+        IBatteryItem batteryItem = ((IBatteryItem) stack.getItem());
+        assert batteryItem != null;
+        return new DurabilityLikeInfo(batteryItem.getCharge(stack), batteryItem.getMaxCharge(stack));
     }
 }

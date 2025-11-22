@@ -42,6 +42,7 @@ dependencies {
     implementation rfg.deobf("curse.maven:tinkers_construct-74072:2902483")
     implementation rfg.deobf("curse.maven:mantle-74924:2713386")
     implementation rfg.deobf("curse.maven:sussypatches-1319894:7101652")
+    compileOnly rfg.deobf("curse.maven:hbm_ce-1312314:7214852") // Crashes with Tinkers Evo
 
 //    implementation rfg.deobf(files('libs/optifine.jar'))
 }
