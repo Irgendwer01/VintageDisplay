@@ -104,14 +104,16 @@ public class OverlayCharge extends OverlayDurabilityLike {
     }
 
     public static DurabilityLikeInfo handleTinkersEvo(@NotNull ItemStack stack) {
-        if (stack.hasCapability(CapabilityEnergy.ENERGY, null)) {
-            return handleEnergyStorage(stack);
-        }
-        if (DuraDisplay.ic2Loaded) {
-            if (stack.hasCapability(TconEvoCaps.EU_STORE, null)) {
-                EuStore euStore = stack.getCapability(TconEvoCaps.EU_STORE, null);
-                assert euStore != null;
-                return new DurabilityLikeInfo(euStore.getEuStored(), euStore.getEuStoredMax());
+        if (DuraDisplay.tinkersEvoLoaded) {
+            if (stack.hasCapability(CapabilityEnergy.ENERGY, null)) {
+                return handleEnergyStorage(stack);
+            }
+            if (DuraDisplay.ic2Loaded) {
+                if (stack.hasCapability(TconEvoCaps.EU_STORE, null)) {
+                    EuStore euStore = stack.getCapability(TconEvoCaps.EU_STORE, null);
+                    assert euStore != null;
+                    return new DurabilityLikeInfo(euStore.getEuStored(), euStore.getEuStoredMax());
+                }
             }
         }
         return null;

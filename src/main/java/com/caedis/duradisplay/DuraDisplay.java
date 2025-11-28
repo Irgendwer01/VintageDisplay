@@ -29,6 +29,7 @@ public class DuraDisplay implements ILateMixinLoader {
     public static final Logger LOG = LogManager.getLogger(Tags.MODID);
     public static boolean ic2Loaded = false;
     public static boolean mekanismLoaded = false;
+    public static boolean tinkersEvoLoaded = false;
 
     @SuppressWarnings("unused")
     @Mod.EventHandler
@@ -43,6 +44,7 @@ public class DuraDisplay implements ILateMixinLoader {
         }
         ic2Loaded = Loader.isModLoaded("ic2");
         mekanismLoaded = Loader.isModLoaded("mekanism");
+        tinkersEvoLoaded = Loader.isModLoaded("tconevo");
     }
 
     @SuppressWarnings("unused")
