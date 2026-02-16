@@ -48,9 +48,7 @@ public class OverlayPotionBrew extends OverlayDurabilityLike {
                     }
                 });
         addHandler("vazkii.botania.common.item.brew.ItemBrewBase", OverlayPotionBrew::handleBotaniaBrew);
-        addHandler("WayofTime.bloodmagic.item.ItemPotionFlask", OverlayDurability::handleDefault); // Needs to be last
-                                                                                                   // because else all
-        // other Handler won't apply
+        addHandler("WayofTime.bloodmagic.item.ItemPotionFlask", OverlayDurability::handleDefault);
     }
 
     @Override

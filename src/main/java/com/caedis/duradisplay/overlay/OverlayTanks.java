@@ -46,6 +46,8 @@ public class OverlayTanks extends OverlayDurabilityLike {
                         return "tanks";
                     }
                 });
+        addHandler("knightminer.ceramics.items.ItemClayBucket", i -> null);
+        addHandler("claybucket.ItemClayBucket", i -> null);
         addHandler("net.minecraft.item.ItemBucket", i -> null);
         addHandler("net.minecraft.item.Item", OverlayTanks::handleDefault); // Needs to be last because else all
         // other Handler won't apply
