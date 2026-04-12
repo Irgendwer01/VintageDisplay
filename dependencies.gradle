@@ -35,7 +35,7 @@ dependencies {
     implementation rfg.deobf("curse.maven:AE2UEL-570458:5047265")
     implementation rfg.deobf("curse.maven:Forestry-59751:2684780")
     implementation rfg.deobf("curse.maven:Thaumcraft-223628:2629023")
-    implementation rfg.deobf("curse.maven:mekanism-268560:2835175")
+    implementation rfg.deobf("curse.maven:mekanism-840735:7904551")
     implementation rfg.deobf("curse.maven:ender_utilities-224320:2977010")
     implementation rfg.deobf("curse.maven:tinkers_evolution-384589:6802732")
     implementation rfg.deobf("curse.maven:libnine-322344:6790812")
@@ -44,6 +44,7 @@ dependencies {
     implementation rfg.deobf("curse.maven:sussypatches-1319894:7101652")
     compileOnly rfg.deobf("curse.maven:hbm_ce-1312314:7214852") // Crashes with Tinkers Evo
     implementation rfg.deobf("curse.maven:botania-225643:3330934")
+    implementation rfg.deobf("curse.maven:ie-231951:2974106")
 
 //    implementation rfg.deobf(files('libs/optifine.jar'))
 }
