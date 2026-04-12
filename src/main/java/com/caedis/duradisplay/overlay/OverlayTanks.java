@@ -7,7 +7,6 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.caedis.duradisplay.DuraDisplay;
 import com.caedis.duradisplay.config.ConfigDurabilityLike;
 import com.caedis.duradisplay.utils.ColorType;
 import com.caedis.duradisplay.utils.DurabilityFormatter;
@@ -16,6 +15,8 @@ import com.caedis.duradisplay.utils.DurabilityLikeInfo;
 import mekanism.api.gas.IGasItem;
 
 public class OverlayTanks extends OverlayDurabilityLike {
+
+    public static boolean enabled;
 
     public OverlayTanks() {
         super(
@@ -36,6 +37,7 @@ public class OverlayTanks extends OverlayDurabilityLike {
 
                     @Override
                     public void postLoadConfig() {
+                        OverlayTanks.enabled = enabled;
                         configCategory.setComment("""
                                 Tanks is the module that shows the current fill level of fluid tanks
                                                                              """);
@@ -49,6 +51,7 @@ public class OverlayTanks extends OverlayDurabilityLike {
         addHandler("knightminer.ceramics.items.ItemClayBucket", i -> null);
         addHandler("claybucket.ItemClayBucket", i -> null);
         addHandler("net.minecraft.item.ItemBucket", i -> null);
+        addHandler("mekanism.api.gas.IGasItem", OverlayTanks::handleIGas);
         addHandler("net.minecraft.item.Item", OverlayTanks::handleDefault); // Needs to be last because else all
         // other Handler won't apply
     }
@@ -71,14 +74,15 @@ public class OverlayTanks extends OverlayDurabilityLike {
             }
             return new DurabilityLikeInfo(fill, capacity);
         }
-        if (DuraDisplay.mekanismLoaded) {
-            if (stack.getItem() instanceof IGasItem iGasItem) {
-                double max = iGasItem.getMaxGas(stack);
-                double damage = iGasItem.getGas(stack) == null ? 0 : max - iGasItem.getGas(stack).amount;
-                double current = max - damage;
-                return new DurabilityLikeInfo(current, max);
-            }
-        }
         return null;
+    }
+
+    public static DurabilityLikeInfo handleIGas(@NotNull ItemStack stack) {
+        IGasItem iGasItem = (IGasItem) stack.getItem();
+        assert iGasItem != null;
+        double max = iGasItem.getMaxGas(stack);
+        double damage = iGasItem.getGas(stack) == null ? 0 : max - iGasItem.getGas(stack).amount;
+        double current = max - damage;
+        return new DurabilityLikeInfo(current, max);
     }
 }

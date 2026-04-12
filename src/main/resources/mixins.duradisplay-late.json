@@ -10,7 +10,9 @@
     "gregtech.ToolChargeBarRendererMixin",
     "enderutilities.MixinGuiContainerLargeStacks",
     "tinkersevo.MixinItemStackBarCoreHooks",
-    "sussypatches.MixinFluidBarRenderer"
+    "sussypatches.MixinFluidBarRenderer",
+    "mekanism.MixinItemMekaSuitBodyArmor",
+    "mekanism.MixinItemMekaSuitHelmet"
   ],
   "mixins": []
 }
