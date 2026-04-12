@@ -25,7 +25,7 @@ public class OverlayTanks extends OverlayDurabilityLike {
                         OverlayDurabilityLike.Style.Text,
                         DurabilityFormatter.Format.percent,
                         2,
-                        false,
+                        true,
                         true,
                         0x00FF00,
                         ColorType.RYGDurability,
