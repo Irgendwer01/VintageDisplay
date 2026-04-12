@@ -11,6 +11,7 @@ import com.caedis.duradisplay.utils.ColorType;
 import com.caedis.duradisplay.utils.DurabilityFormatter;
 import com.caedis.duradisplay.utils.DurabilityLikeInfo;
 
+import blusunrize.immersiveengineering.common.items.ItemIETool;
 import ic2.api.item.ICustomDamageItem;
 import ic2.core.item.armor.ItemArmorFluidTank;
 
@@ -57,6 +58,7 @@ public class OverlayDurability extends OverlayDurabilityLike {
         addHandler("buildcraft.core.ItemPaintbrush", i -> null);
         addHandler("ic2.core.item.tool.ItemToolPainter", i -> null);
         addHandler("thaumcraft.common.items.tools.ItemScribingTools", i -> null);
+        addHandler("blusunrize.immersiveengineering.common.items.ItemIETool", OverlayDurability::handleItemIETool);
         addHandler("net.minecraft.item.Item", OverlayDurability::handleDefault); // Needs to be last because else all
                                                                                  // other Handler won't apply
     }
@@ -108,6 +110,15 @@ public class OverlayDurability extends OverlayDurabilityLike {
         double damage = bei.getCustomDamage(stack);
         double max = bei.getMaxCustomDamage(stack);
         double current = max - damage;
+        return new DurabilityLikeInfo(current, max);
+    }
+
+    public static DurabilityLikeInfo handleItemIETool(@NotNull ItemStack stack) {
+        ItemIETool tool = ((ItemIETool) stack.getItem());
+        assert tool != null;
+        if (tool.getMaxDamageIE(stack) == 0) return null;
+        int max = tool.getMaxDamageIE(stack);
+        int current = max - tool.getItemDamageIE(stack);
         return new DurabilityLikeInfo(current, max);
     }
 }
