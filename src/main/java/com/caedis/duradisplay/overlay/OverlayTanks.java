@@ -48,6 +48,7 @@ public class OverlayTanks extends OverlayDurabilityLike {
                         return "tanks";
                     }
                 });
+        addHandler("net.minecraftforge.fluids.UniversalBucket", i -> null);
         addHandler("knightminer.ceramics.items.ItemClayBucket", i -> null);
         addHandler("claybucket.ItemClayBucket", i -> null);
         addHandler("net.minecraft.item.ItemBucket", i -> null);
